@@ -33,7 +33,9 @@ namespace CampingParkAPI
         {
             services.AddDbContext<CampingParkDbContext>(options => 
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddScoped<ICampingParkRepository, CampingParkRepository>();
+
             services.AddAutoMapper(typeof(MappingProfile));
 
             services.AddControllers();

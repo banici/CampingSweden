@@ -121,3 +121,5 @@ C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkAPI\bin\Debug\ne
 C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkAPI\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkAPI\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkAPI\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkAPI\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkAPI\obj\Debug\netcoreapp3.1\CampingParkAPI.MvcApplicationPartsAssemblyInfo.cache
