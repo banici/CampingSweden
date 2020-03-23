@@ -8,10 +8,14 @@ namespace CampingParkAPI.Repository.IRepository
 {
     public interface ICampingParkRepository
     {
-        CampingPark GetAllCampingParks();
+        ICollection<CampingPark> GetAllCampingParks();
         CampingPark GetCampingPark(int id);
-        bool DoesParkExist(CampingPark cPark);
-        bool DoesParkExist(int id);
-
+        bool CampingParkExist(string name);
+        bool CampingParkExist(int id);
+        bool UpdateCampingPark(CampingPark cPark);
+        bool CreateCampingPark(CampingPark cPark);
+        bool DeleteCampingPark(CampingPark cPark);
+        bool Save();
+        
     }
 }
