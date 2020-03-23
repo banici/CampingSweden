@@ -14,6 +14,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using AutoMapper;
+using CampingParkAPI.MappingProfiles;
 
 namespace CampingParkAPI
 {
@@ -32,6 +34,7 @@ namespace CampingParkAPI
             services.AddDbContext<CampingParkDbContext>(options => 
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<ICampingParkRepository, CampingParkRepository>();
+            services.AddAutoMapper(typeof(MappingProfile));
 
             services.AddControllers();
         }
