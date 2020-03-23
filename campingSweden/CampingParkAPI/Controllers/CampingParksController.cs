@@ -26,7 +26,7 @@ namespace CampingParkAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllCampingParks()
+        public IActionResult GetCampingParks()
         {
             var objList = _repo.GetAllCampingParks();
 
@@ -36,6 +36,21 @@ namespace CampingParkAPI.Controllers
             //{
             //    objDto.Add(_mapper.Map<CampingParkDTO>(obj));
             //}
+
+            return Ok(objDto);
+        }
+
+        [HttpGet ("{id:int}", Name = "GetCampingPark")]
+        public IActionResult GetCampingPark(int id)
+        {
+            var obj = _repo.GetCampingPark(id);
+
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            var objDto = _mapper.Map<CampingParkDTO>(obj);
 
             return Ok(objDto);
         }
