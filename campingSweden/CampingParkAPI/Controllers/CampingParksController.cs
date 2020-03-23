@@ -7,18 +7,19 @@ using CampingParkAPI.MappingProfiles;
 using CampingParkAPI.Models;
 using CampingParkAPI.Models.DTOs;
 using CampingParkAPI.Repository;
+using CampingParkAPI.Repository.IRepository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CampingParkAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class CampingParksController : ControllerBase
     {
-        private readonly CampingParkRepository _repo;
+        private readonly ICampingParkRepository _repo;
         private readonly IMapper _mapper;
-        public CampingParksController(CampingParkRepository repo, IMapper mapper)
+        public CampingParksController(ICampingParkRepository repo, IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
@@ -29,12 +30,12 @@ namespace CampingParkAPI.Controllers
         {
             var objList = _repo.GetAllCampingParks();
 
-            //var dtoList = _mapper.Map<ICollection<CampingPark>, ICollection<CampingParkDTO>>(objList);
-            var objDto = new List<CampingParkDTO>();
-            foreach(var obj in objList)
-            {
-                objDto.Add(_mapper.Map<CampingParkDTO>(obj));
-            }
+            var objDto = _mapper.Map<ICollection<CampingPark>, List<CampingParkDTO>>(objList);
+            //var objDto = new List<CampingParkDTO>();
+            //foreach(var obj in objList)
+            //{
+            //    objDto.Add(_mapper.Map<CampingParkDTO>(obj));
+            //}
 
             return Ok(objDto);
         }

@@ -12,7 +12,7 @@ namespace CampingParkAPI.MappingProfiles
     {
         public MappingProfile()
         {
-            CreateMap<CampingPark, CampingParkDTO>();
+            CreateMap<CampingPark, CampingParkDTO>().ReverseMap();
         }
     }
 }
