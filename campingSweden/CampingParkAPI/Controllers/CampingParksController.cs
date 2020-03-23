@@ -11,5 +11,10 @@ namespace CampingParkAPI.Controllers
     [ApiController]
     public class CampingParksController : ControllerBase
     {
+        
+        public CampingParksController()
+        {
+
+        }
     }
 }
