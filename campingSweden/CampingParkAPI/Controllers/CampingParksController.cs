@@ -26,6 +26,7 @@ namespace CampingParkAPI.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(200, Type = typeof(CampingParkDTO))]
         public IActionResult GetCampingParks()
         {
             var objList = _repo.GetAllCampingParks();
@@ -41,6 +42,9 @@ namespace CampingParkAPI.Controllers
         }
 
         [HttpGet ("{id:int}", Name = "GetCampingPark")]
+        [ProducesResponseType(200, Type = typeof(CampingParkDTO))]
+        [ProducesResponseType(404)]
+        [ProducesDefaultResponseType]
         public IActionResult GetCampingPark(int id)
         {
             var obj = _repo.GetCampingPark(id);
@@ -53,6 +57,19 @@ namespace CampingParkAPI.Controllers
             var objDto = _mapper.Map<CampingParkDTO>(obj);
 
             return Ok(objDto);
+        }
+
+        public IActionResult CreateCampingPark(CampingParkDTO cParkDto)
+        {
+            if(cParkDto == null)
+            {
+                return BadRequest();
+            }
+
+            var cPark = _mapper.Map<CampingPark>(cParkDto);
+            _repo.CreateCampingPark(cPark);
+
+            return Ok();
         }
     }
 }
