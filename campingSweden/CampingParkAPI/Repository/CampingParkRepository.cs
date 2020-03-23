@@ -28,12 +28,14 @@ namespace CampingParkAPI.Repository
 
         public bool CreateCampingPark(CampingPark cPark)
         {
-            throw new NotImplementedException();
+            _context.CampingParks.Add(cPark);
+            return Save();
         }
 
         public bool DeleteCampingPark(CampingPark cPark)
         {
-            throw new NotImplementedException();
+            _context.CampingParks.Remove(cPark);
+            return Save();
         }
 
         public ICollection<CampingPark> GetAllCampingParks()
@@ -43,7 +45,7 @@ namespace CampingParkAPI.Repository
 
         public CampingPark GetCampingPark(int id)
         {
-            throw new NotImplementedException();
+            return _context.CampingParks.FirstOrDefault(c => c.Id == id);           
         }
 
         public bool Save()
@@ -53,7 +55,8 @@ namespace CampingParkAPI.Repository
 
         public bool UpdateCampingPark(CampingPark cPark)
         {
-            throw new NotImplementedException();
+            _context.CampingParks.Update(cPark);
+            return Save();
         }
     }
 }
