@@ -59,7 +59,7 @@ namespace CampingParkAPI
 
             app.UseSwagger();
 
-            app.UseSwaggerUI(options => options.SwaggerEndpoint("swagger/CampingParkOpenAPI/swagger.json", "CampingPark API"));
+            app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/CampingParkOpenAPI/swagger.json", "CampingPark API"));
 
             app.UseRouting();
 
