@@ -56,20 +56,46 @@ namespace CampingParkAPI.Controllers
 
             var objDto = _mapper.Map<CampingParkDTO>(obj);
 
+            // This block does the same work as the line above. 
+            /*var objDto = new NationalParkDto()
+            {
+                Created = obj.Created,
+                Id = obj.Id,
+                Name = obj.Name,
+                State = obj.State,
+                Established = obj.Established
+            };*/
+
             return Ok(objDto);
         }
 
-        public IActionResult CreateCampingPark(CampingParkDTO cParkDto)
+        [HttpPost]
+        [ProducesResponseType(201, Type = typeof(CampingParkDTO))]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult CreateCampingPark([FromBody]CampingParkDTO cParkDto)
         {
             if(cParkDto == null)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
+            }
+
+            if(_repo.CampingParkExist(cParkDto.Name))
+            {
+                ModelState.AddModelError("", "Camping park with that name already exists!");
+                return StatusCode(404, ModelState);
             }
 
             var cPark = _mapper.Map<CampingPark>(cParkDto);
-            _repo.CreateCampingPark(cPark);
 
-            return Ok();
+            if(!_repo.CreateCampingPark(cPark))
+            {
+                ModelState.AddModelError("", $"Something went wrong when saving the record!");
+                return StatusCode(500, ModelState);
+            }
+
+            return CreatedAtRoute("GetCampingPark", new { id = cPark.Id }, cPark);
         }
     }
 }
