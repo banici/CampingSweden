@@ -87,6 +87,11 @@ namespace CampingParkAPI.Controllers
                 return StatusCode(404, ModelState);
             }
 
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var cPark = _mapper.Map<CampingPark>(cParkDto);
 
             if(!_repo.CreateCampingPark(cPark))
@@ -98,7 +103,7 @@ namespace CampingParkAPI.Controllers
             return CreatedAtRoute("GetCampingPark", new { id = cPark.Id }, cPark);
         }
 
-        [HttpPatch ("{id:int}", Name = "UpdateCampingPark")]
+        [HttpPatch("{id:int}", Name = "UpdateCampingPark")]
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -111,7 +116,7 @@ namespace CampingParkAPI.Controllers
             }
 
             var cPark = _mapper.Map<CampingPark>(cParkDto);
-           
+
             if (!_repo.UpdateCampingPark(cPark))
             {
                 ModelState.AddModelError("", $"Something went wrong when updating the record: {cPark.Name}");
