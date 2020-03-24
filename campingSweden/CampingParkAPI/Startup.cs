@@ -38,6 +38,12 @@ namespace CampingParkAPI
 
             services.AddAutoMapper(typeof(MappingProfile));
 
+            services.AddSwaggerGen(options => options.SwaggerDoc("CampingParkOpenAPI", 
+                new Microsoft.OpenApi.Models.OpenApiInfo() { 
+                       Title = "CampingParkOpenAPI ",
+                       Version = "1"
+                }));
+
             services.AddControllers();
         }
 
@@ -50,6 +56,10 @@ namespace CampingParkAPI
             }
 
             app.UseHttpsRedirection();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(options => options.SwaggerEndpoint("swagger/CampingParkOpenAPI/swagger.json", "CampingPark API"));
 
             app.UseRouting();
 
