@@ -91,11 +91,57 @@ namespace CampingParkAPI.Controllers
 
             if(!_repo.CreateCampingPark(cPark))
             {
-                ModelState.AddModelError("", $"Something went wrong when saving the record!");
+                ModelState.AddModelError("", $"Something went wrong when saving the record: {cPark.Name}");
                 return StatusCode(500, ModelState);
             }
 
             return CreatedAtRoute("GetCampingPark", new { id = cPark.Id }, cPark);
+        }
+
+        [HttpPatch ("{id:int}", Name = "UpdateCampingPark")]
+        [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult UpdateCampingPark(int id, [FromBody]CampingParkDTO cParkDto)
+        {
+            if (cParkDto == null || id != cParkDto.Id)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var cPark = _mapper.Map<CampingPark>(cParkDto);
+           
+            if (!_repo.UpdateCampingPark(cPark))
+            {
+                ModelState.AddModelError("", $"Something went wrong when updating the record: {cPark.Name}");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id:int}", Name = "DeleteCampingPark")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult DeleteCampingPark(int id)
+        {
+            if (!_repo.CampingParkExist(id))
+            {
+                return BadRequest(ModelState);
+            }
+
+            var cPark = _repo.GetCampingPark(id);
+
+            if (!_repo.DeleteCampingPark(cPark))
+            {
+                ModelState.AddModelError("", $"Something went wrong when deleting the record: {cPark.Name}");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
         }
     }
 }
