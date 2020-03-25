@@ -15,5 +15,6 @@ namespace CampingParkAPI.Data
         }
 
         public DbSet<CampingPark> CampingParks { get; set; }
+        public DbSet<Trail> Trails { get; set; }
     }
 }
