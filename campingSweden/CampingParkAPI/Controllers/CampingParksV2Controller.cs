@@ -13,7 +13,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CampingParkAPI.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/v/{version:apiVersion}/campingparks")]
+    [ApiVersion("2.0")]
     [ApiController]
     //[ApiExplorerSettings(GroupName = "CampingParkOpenAPI")] // This bundles the Swagger UI Document for this controller only.
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -35,18 +36,9 @@ namespace CampingParkAPI.Controllers
         [ProducesResponseType(200, Type = typeof(List<CampingParkDTO>))]
         public IActionResult GetCampingParks()
         {
-            var objList = _repo.GetAllCampingParks();
+            var obj = _repo.GetAllCampingParks().FirstOrDefault();
 
-            var objDto = _mapper.Map<ICollection<CampingPark>, List<CampingParkDTO>>(objList);
-
-            // This block works just like the oneline mapper converter above.
-            //var objDto = new List<CampingParkDTO>();
-            //foreach(var obj in objList)
-            //{
-            //    objDto.Add(_mapper.Map<CampingParkDTO>(obj));
-            //}
-
-            return Ok(objDto);
+             return Ok(_mapper.Map<CampingParkDTO>(obj));
         }
       
     }
