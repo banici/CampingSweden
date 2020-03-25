@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CampingParkAPI</name>
+    </assembly>
+    <members>
+        <member name="M:CampingParkAPI.Controllers.CampingParksController.GetCampingParks">
+            <summary>
+            Get list of camping parks.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CampingParkAPI.Controllers.CampingParksController.GetCampingPark(System.Int32)">
+            <summary>
+            Get individual camping park.
+            </summary>
+            <param name="id"> The Id of the camping park</param>
+            <returns></returns>
+        </member>
+        <member name="M:CampingParkAPI.Controllers.CampingParksController.CreateCampingPark(CampingParkAPI.Models.DTOs.CampingParkDTO)">
+            <summary>
+            Create a camping park.
+            </summary>
+            <param name="cParkDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CampingParkAPI.Controllers.CampingParksController.UpdateCampingPark(System.Int32,CampingParkAPI.Models.DTOs.CampingParkDTO)">
+            <summary>
+            Update information on a existing camping park selected by it's Id.
+            </summary>
+            <param name="id"> The Id of the camping park</param>
+            <param name="cParkDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CampingParkAPI.Controllers.CampingParksController.DeleteCampingPark(System.Int32)">
+            <summary>
+            Delete a camping park from the record by confirming it's Id.
+            </summary>
+            <param name="id"> The Id of the camping park</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -128,3 +128,4 @@ C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkAPI\bin\Debug\ne
 C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkAPI\obj\Debug\netcoreapp3.1\CampingParkAPI.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkAPI\obj\Debug\netcoreapp3.1\CampingParkAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkAPI\bin\Debug\netcoreapp3.1\CampingParkAPI.xml

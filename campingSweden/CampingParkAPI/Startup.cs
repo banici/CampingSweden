@@ -16,6 +16,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using AutoMapper;
 using CampingParkAPI.MappingProfiles;
+using System.Reflection;
+using System.IO;
 
 namespace CampingParkAPI
 {
@@ -31,18 +33,24 @@ namespace CampingParkAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<CampingParkDbContext>(options => 
+            services.AddDbContext<CampingParkDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<ICampingParkRepository, CampingParkRepository>();
 
             services.AddAutoMapper(typeof(MappingProfile));
 
-            services.AddSwaggerGen(options => options.SwaggerDoc("CampingParkOpenAPI", 
-                new Microsoft.OpenApi.Models.OpenApiInfo() { 
-                       Title = "CampingParkOpenAPI ",
-                       Version = "1"
-                }));
+            services.AddSwaggerGen(options => {options.SwaggerDoc("CampingParkOpenAPI",
+                new Microsoft.OpenApi.Models.OpenApiInfo()
+                {
+                    Title = "CampingParkOpenAPI ",
+                    Version = "1"
+                });
+            var xmlCommentFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            var xmlCommentFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentFile);
+                options.IncludeXmlComments(xmlCommentFullPath);
+
+            });
 
             services.AddControllers();
         }
