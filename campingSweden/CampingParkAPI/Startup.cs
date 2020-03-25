@@ -44,7 +44,13 @@ namespace CampingParkAPI
                 new Microsoft.OpenApi.Models.OpenApiInfo()
                 {
                     Title = "CampingParkOpenAPI ",
-                    Version = "1"
+                    Version = "1",
+                    Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+                    {
+                        Name = "ilija",
+                        Email = "banic89a@hotmail.com",
+                        Url = new Uri("https://banici.github.io/myPortfolio")
+                    }
                 });
             var xmlCommentFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             var xmlCommentFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentFile);

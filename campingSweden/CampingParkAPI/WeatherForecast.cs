@@ -13,3 +13,11 @@ namespace CampingParkAPI
         public string Summary { get; set; }
     }
 }
+
+
+// Automapper for easier converting from model to DTO.
+
+// SwashbuckleAspCore containing Swagger / SwaggerUI for an alternative API call than Postman?
+
+// Due to enabling xml comments, warnings are shown through out the whole project pointing to where comments are missing.
+// Project => Properties > Build => Surpress warnings and type the error code to get rid of warnings.

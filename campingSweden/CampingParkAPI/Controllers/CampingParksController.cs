@@ -15,6 +15,7 @@ namespace CampingParkAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public class CampingParksController : ControllerBase
     {
         private readonly ICampingParkRepository _repo;
@@ -30,7 +31,7 @@ namespace CampingParkAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(CampingParkDTO))]
+        [ProducesResponseType(200, Type = typeof(List<CampingParkDTO>))]
         public IActionResult GetCampingParks()
         {
             var objList = _repo.GetAllCampingParks();
