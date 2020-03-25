@@ -39,5 +39,40 @@
             <param name="id"> The Id of the camping park</param>
             <returns></returns>
         </member>
+        <member name="M:TrailAPI.Controllers.TrailsController.GetTrails">
+            <summary>
+            Get list of all trails.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TrailAPI.Controllers.TrailsController.GetTrail(System.Int32)">
+            <summary>
+            Get individual trail.
+            </summary>
+            <param name="id"> The Id of the trail</param>
+            <returns></returns>
+        </member>
+        <member name="M:TrailAPI.Controllers.TrailsController.CreateTrail(CampingParkAPI.Models.DTOs.TrailCreateDTO)">
+            <summary>
+            Create a trail.
+            </summary>
+            <param name="trailDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TrailAPI.Controllers.TrailsController.UpdateTrail(System.Int32,CampingParkAPI.Models.DTOs.TrailUpdateDTO)">
+            <summary>
+            Update information on a existing trail selected by it's Id.
+            </summary>
+            <param name="id"> The Id of the trail</param>
+            <param name="trailDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TrailAPI.Controllers.TrailsController.DeleteTrail(System.Int32)">
+            <summary>
+            Delete a trail from the record by confirming it's Id.
+            </summary>
+            <param name="id"> The Id of the trail</param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

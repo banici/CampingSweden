@@ -18,6 +18,8 @@ using AutoMapper;
 using CampingParkAPI.MappingProfiles;
 using System.Reflection;
 using System.IO;
+using TrailAPI.Repository.IRepository;
+using TrailAPI.Repository;
 
 namespace CampingParkAPI
 {
@@ -37,6 +39,7 @@ namespace CampingParkAPI
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<ICampingParkRepository, CampingParkRepository>();
+            services.AddScoped<ITrailRepository, TrailRepository>();
 
             services.AddAutoMapper(typeof(MappingProfile));
 

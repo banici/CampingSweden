@@ -13,6 +13,9 @@ namespace CampingParkAPI.MappingProfiles
         public MappingProfile()
         {
             CreateMap<CampingPark, CampingParkDTO>().ReverseMap();
+            CreateMap<Trail, TrailDTO>().ReverseMap();
+            CreateMap<Trail, TrailUpdateDTO>().ReverseMap();
+            CreateMap<Trail, TrailCreateDTO>().ReverseMap();
         }
     }
 }
