@@ -64,6 +64,24 @@ namespace TrailAPI.Controllers
             return Ok(objDto);
         }
 
+        [HttpGet("[action]/{campingParkId:int}")] // Since this method is routed as GetTrail, adding [action] stops swaggerUI from sending Error.
+        [ProducesResponseType(200, Type = typeof(TrailDTO))]
+        [ProducesResponseType(404)]
+        [ProducesDefaultResponseType]
+        public IActionResult GetTrailInCampingPark(int campingParkId)
+        {
+            var objList = _repo.GetTrailsInCampingPark(campingParkId);
+
+            if (objList == null)
+            {
+                return NotFound();
+            }
+
+            var objDto = _mapper.Map<List<TrailDTO>>(objList);
+
+            return Ok(objDto);
+        }
+
         /// <summary>
         /// Create a trail.
         /// </summary>
