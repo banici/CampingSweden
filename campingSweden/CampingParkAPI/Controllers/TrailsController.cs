@@ -13,6 +13,8 @@ namespace TrailAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [ApiExplorerSettings(GroupName = "CampingParkOpenAPITrails")] // This bundles the Swagger UI Document for this controller only.
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public class TrailsController : ControllerBase
     {
         private readonly ITrailRepository _repo;

@@ -43,18 +43,33 @@ namespace CampingParkAPI
 
             services.AddAutoMapper(typeof(MappingProfile));
 
-            services.AddSwaggerGen(options => {options.SwaggerDoc("CampingParkOpenAPI",
-                new Microsoft.OpenApi.Models.OpenApiInfo()
-                {
-                    Title = "CampingParkOpenAPI ",
-                    Version = "1",
-                    Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+            services.AddSwaggerGen(options => {
+                options.SwaggerDoc("CampingParkOpenAPI",
+                    new Microsoft.OpenApi.Models.OpenApiInfo()
+                    {
+                        Title = "CampingParkOpenAPI (Camping Parks)",
+                        Version = "1",
+                        Contact = new Microsoft.OpenApi.Models.OpenApiContact()
                     {
                         Name = "ilija",
                         Email = "banic89a@hotmail.com",
                         Url = new Uri("https://banici.github.io/myPortfolio")
                     }
-                });
+                    });
+
+                options.SwaggerDoc("CampingParkOpenAPITrails",
+                    new Microsoft.OpenApi.Models.OpenApiInfo()
+                    {
+                        Title = "CampingParkOpenAPI (Trails)",
+                        Version = "1",
+                        Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+                    {
+                        Name = "ilija",
+                        Email = "banic89a@hotmail.com",
+                        Url = new Uri("https://banici.github.io/myPortfolio")
+                    }
+                    });
+
             var xmlCommentFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             var xmlCommentFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentFile);
                 options.IncludeXmlComments(xmlCommentFullPath);
@@ -77,7 +92,8 @@ namespace CampingParkAPI
             app.UseSwagger();
 
             app.UseSwaggerUI(options => {
-                options.SwaggerEndpoint("/swagger/CampingParkOpenAPI/swagger.json", "CampingPark API");
+                options.SwaggerEndpoint("/swagger/CampingParkOpenAPI/swagger.json", "CampingPark API (Camping Parks)");
+                options.SwaggerEndpoint("/swagger/CampingParkOpenAPITrails/swagger.json", "CampingPark API (Trails)");
                 options.RoutePrefix = ""; // This empty prefix will be default startup when launching API by removing LaunchUrl in launchSettings.json 
             });
 
