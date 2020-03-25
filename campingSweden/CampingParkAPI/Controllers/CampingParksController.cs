@@ -15,7 +15,7 @@ namespace CampingParkAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [ApiExplorerSettings(GroupName = "CampingParkOpenAPI")] // This bundles the Swagger UI Document for this controller only.
+    //[ApiExplorerSettings(GroupName = "CampingParkOpenAPI")] // This bundles the Swagger UI Document for this controller only.
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public class CampingParksController : ControllerBase
     {
