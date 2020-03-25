@@ -25,13 +25,19 @@ namespace CampingParkAPI.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Get list of camping parks.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        //[ProducesResponseType(200, Type = typeof(CampingParkDTO))]
+        [ProducesResponseType(200, Type = typeof(CampingParkDTO))]
         public IActionResult GetCampingParks()
         {
             var objList = _repo.GetAllCampingParks();
 
             var objDto = _mapper.Map<ICollection<CampingPark>, List<CampingParkDTO>>(objList);
+
+            // This block works just like the oneline mapper converter above.
             //var objDto = new List<CampingParkDTO>();
             //foreach(var obj in objList)
             //{
@@ -41,10 +47,15 @@ namespace CampingParkAPI.Controllers
             return Ok(objDto);
         }
 
+        /// <summary>
+        /// Get individual camping park.
+        /// </summary>
+        /// <param name="id"> The Id of the camping park</param>
+        /// <returns></returns>
         [HttpGet ("{id:int}", Name = "GetCampingPark")]
-        //[ProducesResponseType(200, Type = typeof(CampingParkDTO))]
-        //[ProducesResponseType(404)]
-        //[ProducesDefaultResponseType]
+        [ProducesResponseType(200, Type = typeof(CampingParkDTO))]
+        [ProducesResponseType(404)]
+        [ProducesDefaultResponseType]
         public IActionResult GetCampingPark(int id)
         {
             var obj = _repo.GetCampingPark(id);
@@ -69,11 +80,16 @@ namespace CampingParkAPI.Controllers
             return Ok(objDto);
         }
 
+        /// <summary>
+        /// Create a camping park.
+        /// </summary>
+        /// <param name="cParkDto"></param>
+        /// <returns></returns>
         [HttpPost]
-        //[ProducesResponseType(201, Type = typeof(CampingParkDTO))]
-        //[ProducesResponseType(StatusCodes.Status201Created)]
-        //[ProducesResponseType(StatusCodes.Status404NotFound)]
-        //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(201, Type = typeof(CampingParkDTO))]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult CreateCampingPark([FromBody]CampingParkDTO cParkDto)
         {
             if(cParkDto == null)
@@ -103,10 +119,16 @@ namespace CampingParkAPI.Controllers
             return CreatedAtRoute("GetCampingPark", new { id = cPark.Id }, cPark);
         }
 
+        /// <summary>
+        /// Update information on a existing camping park selected by it's Id.
+        /// </summary>
+        /// <param name="id"> The Id of the camping park</param>
+        /// <param name="cParkDto"></param>
+        /// <returns></returns>
         [HttpPatch("{id:int}", Name = "UpdateCampingPark")]
-        //[ProducesResponseType(204)]
-        //[ProducesResponseType(StatusCodes.Status404NotFound)]
-        //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult UpdateCampingPark(int id, [FromBody]CampingParkDTO cParkDto)
         {
             if (cParkDto == null || id != cParkDto.Id)
@@ -125,11 +147,16 @@ namespace CampingParkAPI.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Delete a camping park from the record by confirming it's Id.
+        /// </summary>
+        /// <param name="id"> The Id of the camping park</param>
+        /// <returns></returns>
         [HttpDelete("{id:int}", Name = "DeleteCampingPark")]
-        //[ProducesResponseType(StatusCodes.Status204NoContent)]
-        //[ProducesResponseType(StatusCodes.Status404NotFound)]
-        //[ProducesResponseType(StatusCodes.Status409Conflict)]
-        //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult DeleteCampingPark(int id)
         {
             if (!_repo.CampingParkExist(id))
