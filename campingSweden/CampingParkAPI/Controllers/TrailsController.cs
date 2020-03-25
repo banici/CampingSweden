@@ -100,7 +100,7 @@ namespace TrailAPI.Controllers
                 return StatusCode(500, ModelState);
             }
 
-            return CreatedAtRoute("GetTrail", new { id = trail.Id }, trail);
+            return CreatedAtRoute("GetTrail", new { version = HttpContext.GetRequestedApiVersion().ToString(), id = trail.Id }, trail);
         }
 
         /// <summary>

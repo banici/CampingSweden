@@ -119,7 +119,7 @@ namespace CampingParkAPI.Controllers
                 return StatusCode(500, ModelState);
             }
 
-            return CreatedAtRoute("GetCampingPark", new { id = cPark.Id }, cPark);
+            return CreatedAtRoute("GetCampingPark", new { version = HttpContext.GetRequestedApiVersion().ToString(), id = cPark.Id }, cPark);
         }
 
         /// <summary>
