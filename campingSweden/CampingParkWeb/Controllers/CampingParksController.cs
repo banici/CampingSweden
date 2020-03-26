@@ -18,12 +18,12 @@ namespace CampingParkWeb.Controllers
         }
         public IActionResult Index()
         {
-            return View(new CampingPark { });
+            return View(new CampingPark() { });
         }
 
-        public async Task<IActionResult> GetAllCampingParks()
+        public async Task<IActionResult> GetAllCampingPark()
         {
-            return Json(new { data = _cpRepo.GetAllAsync(StaticDetails.CampingParkAPIPath) }); 
+            return Json(new { data = await _cpRepo.GetAllAsync(StaticDetails.CampingParkAPIPath) }); 
         }
     }
 }
