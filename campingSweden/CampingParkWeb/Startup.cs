@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CampingParkWeb.Repository;
+using CampingParkWeb.Repository.IRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,6 +25,9 @@ namespace CampingParkWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<ICampingParkRepository, CampingParkRepository>();
+            services.AddScoped<ITrailRepository, TrailRepository>();
+
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             services.AddHttpClient();
