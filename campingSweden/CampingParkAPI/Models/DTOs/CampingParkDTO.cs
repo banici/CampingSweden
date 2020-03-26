@@ -14,6 +14,7 @@ namespace CampingParkAPI.Models.DTOs
         [Required]
         public string State { get; set; }
         public string Description { get; set; }
+        public byte[] Picture { get; set; }
         public DateTime Created { get; set; }
         public DateTime Established { get; set; }
 
