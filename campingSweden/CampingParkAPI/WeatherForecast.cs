@@ -21,3 +21,7 @@ namespace CampingParkAPI
 
 // Due to enabling xml comments, warnings are shown through out the whole project pointing to where comments are missing.
 // Project => Properties > Build => Surpress warnings and type the error code to get rid of warnings.
+
+// MVC project installed Microsoft.AspNetCore.Mvc.Razor.runtimecompilation. This package makes it possible to make changes while project is running
+// and see the new changes while refreshing the website.
+

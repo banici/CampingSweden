@@ -12,7 +12,6 @@ C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkWeb\bin\Debug\ne
 C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkWeb\obj\Debug\netcoreapp3.1\CampingParkWeb.csprojAssemblyReference.cache
 C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkWeb\obj\Debug\netcoreapp3.1\staticwebassets\CampingParkWeb.StaticWebAssets.Manifest.cache
 C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkWeb\obj\Debug\netcoreapp3.1\staticwebassets\CampingParkWeb.StaticWebAssets.xml
-C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkWeb\obj\Debug\netcoreapp3.1\CampingParkWeb.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkWeb\obj\Debug\netcoreapp3.1\CampingParkWeb.RazorAssemblyInfo.cache
 C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkWeb\obj\Debug\netcoreapp3.1\CampingParkWeb.RazorAssemblyInfo.cs
 C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkWeb\obj\Debug\netcoreapp3.1\CampingParkWeb.AssemblyInfoInputs.cache
