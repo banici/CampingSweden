@@ -11,7 +11,7 @@ using TrailAPI.Repository.IRepository;
 
 namespace TrailAPI.Controllers
 {
-    [Route("api/v/{version:apiVersion}/trails")]
+    [Route("api/v{version:apiVersion}/trails")]
     //[Route("[controller]")]
     [ApiController]
     //[ApiExplorerSettings(GroupName = "CampingParkOpenAPITrails")] // This bundles the Swagger UI Document for this controller only.

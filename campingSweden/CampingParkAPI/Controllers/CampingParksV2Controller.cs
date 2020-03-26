@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CampingParkAPI.Controllers
 {
-    [Route("api/v/{version:apiVersion}/campingparks")]
+    [Route("api/v{version:apiVersion}/campingparks")]
     [ApiVersion("2.0")]
     [ApiController]
     //[ApiExplorerSettings(GroupName = "CampingParkOpenAPI")] // This bundles the Swagger UI Document for this controller only.
