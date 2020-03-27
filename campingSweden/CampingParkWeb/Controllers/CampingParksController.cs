@@ -89,5 +89,15 @@ namespace CampingParkWeb.Controllers
         {
             return Json(new { data = await _cpRepo.GetAllAsync(StaticDetails.CampingParkAPIPath) }); 
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var status = await _cpRepo.DeleteAsync(StaticDetails.CampingParkAPIPath, id);
+            if(status)
+            {
+                return Json(new { success = true, message = "Delete Successful!" });
+            }
+            return Json(new { success = false, message = "Delete Not Successful!" });
+        }
     }
 }
