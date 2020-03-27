@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using CampingParkWeb.Models;
@@ -40,6 +41,48 @@ namespace CampingParkWeb.Controllers
             }
 
             return View(obj);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Upsert(CampingPark obj)
+        {
+            if(ModelState.IsValid)
+            {
+                var files = HttpContext.Request.Form.Files;
+                if(files.Count > 0)
+                {
+                    byte[] p1 = null;
+                    using(var _fileStream = files[0].OpenReadStream())
+                    {
+                        using(var _memoryStream = new MemoryStream())
+                        {
+                            _fileStream.CopyTo(_memoryStream);
+                            p1 = _memoryStream.ToArray();
+                        }
+                    }
+
+                    obj.Picture = p1;
+                }
+                else
+                {
+                    var objFromDb = await _cpRepo.GetAsync(StaticDetails.CampingParkAPIPath, obj.Id);
+                    obj.Picture = objFromDb.Picture;
+                }
+                if(obj.Id == 0)
+                {
+                    await _cpRepo.CreateAsync(StaticDetails.CampingParkAPIPath, obj);
+                }
+                else
+                {
+                    await _cpRepo.UpdateAsync(StaticDetails.CampingParkAPIPath + obj.Id, obj);
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return View(obj);
+            }
         }
 
         public async Task<IActionResult> GetAllCampingPark()
