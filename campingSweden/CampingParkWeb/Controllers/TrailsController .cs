@@ -37,7 +37,8 @@ namespace TrailWeb.Controllers
                 {
                     Text = i.Name,
                     Value = i.Id.ToString()
-                })
+                }),
+                Trail = new Trail()
             };
 
 
@@ -76,7 +77,19 @@ namespace TrailWeb.Controllers
             }
             else
             {
-                return View(obj);
+                IEnumerable<CampingPark> cpList = await _cpRepo.GetAllAsync(StaticDetails.CampingParkAPIPath);
+
+                TrailsVM objVM = new TrailsVM()
+                {
+                    CampingParkList = cpList.Select(i => new SelectListItem
+                    {
+                        Text = i.Name,
+                        Value = i.Id.ToString()
+                    }),
+                    Trail = obj.Trail
+                };
+
+                return View(objVM);
             }
         }
 
