@@ -6,21 +6,32 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CampingParkWeb.Models;
+using CampingParkWeb.Repository.IRepository;
+using CampingParkWeb.Models.ViewModel;
 
 namespace CampingParkWeb.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ICampingParkRepository _cpReo;
+        private readonly ITrailRepository _tRepo;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ICampingParkRepository cpRepo, ITrailRepository tRepo)
         {
             _logger = logger;
+            _cpReo = cpRepo;
+            _tRepo = tRepo;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            IndexVM listOfCampingParksAndTrails = new IndexVM()
+            {
+                CampingParkList = await _cpReo.GetAllAsync(StaticDetails.CampingParkAPIPath),
+                TrailList = await _tRepo.GetAllAsync(StaticDetails.TrailAPIPath)
+            };
+            return View(listOfCampingParksAndTrails);
         }
 
         public IActionResult Privacy()
