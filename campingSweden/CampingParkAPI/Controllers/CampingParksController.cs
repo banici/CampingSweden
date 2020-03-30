@@ -8,6 +8,7 @@ using CampingParkAPI.Models;
 using CampingParkAPI.Models.DTOs;
 using CampingParkAPI.Repository;
 using CampingParkAPI.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -58,6 +59,7 @@ namespace CampingParkAPI.Controllers
         [HttpGet ("{id:int}", Name = "GetCampingPark")]
         [ProducesResponseType(200, Type = typeof(CampingParkDTO))]
         [ProducesResponseType(404)]
+        [Authorize]
         [ProducesDefaultResponseType]
         public IActionResult GetCampingPark(int id)
         {
