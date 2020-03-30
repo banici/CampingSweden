@@ -43,6 +43,7 @@ namespace CampingParkAPI
 
             services.AddScoped<ICampingParkRepository, CampingParkRepository>();
             services.AddScoped<ITrailRepository, TrailRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddAutoMapper(typeof(MappingProfile));
 
@@ -57,6 +58,9 @@ namespace CampingParkAPI
             services.AddVersionedApiExplorer(options => options.GroupNameFormat = "'v'VVV");
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
             services.AddSwaggerGen();
+
+            var appSettings = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettings);
 
             //services.AddSwaggerGen(options => {
             //    options.SwaggerDoc("CampingParkOpenAPI",
