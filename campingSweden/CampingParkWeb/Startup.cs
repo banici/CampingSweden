@@ -27,6 +27,7 @@ namespace CampingParkWeb
         {
             services.AddScoped<ICampingParkRepository, CampingParkRepository>();
             services.AddScoped<ITrailRepository, TrailRepository>();
+            services.AddScoped<IAccountRepository, AccountRepository>();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 

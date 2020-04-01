@@ -23,7 +23,7 @@ namespace CampingParkAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody] User model)
+        public IActionResult Authenticate([FromBody] AuthenticationModel model)
         {
             var user = _userRepo.Authenticate(model.Username, model.Password);
             if(user == null)
@@ -36,7 +36,7 @@ namespace CampingParkAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public IActionResult Register([FromBody] User model)
+        public IActionResult Register([FromBody] AuthenticationModel model)
         {
             bool usernameAvailable = _userRepo.isUniqueUser(model.Username);
             if(!usernameAvailable)
