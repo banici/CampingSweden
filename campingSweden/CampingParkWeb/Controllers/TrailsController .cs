@@ -9,6 +9,7 @@ using CampingParkWeb.Repository.IRepository;
 using CampingParkWeb;
 using CampingParkWeb.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Http;
 
 namespace TrailWeb.Controllers
 {
@@ -29,7 +30,7 @@ namespace TrailWeb.Controllers
 
         public async Task<IActionResult> Upsert(int? id)
         {
-            IEnumerable<CampingPark> cpList = await _cpRepo.GetAllAsync(StaticDetails.CampingParkAPIPath);
+            IEnumerable<CampingPark> cpList = await _cpRepo.GetAllAsync(StaticDetails.CampingParkAPIPath, HttpContext.Session.GetString("JWToken"));
 
             TrailsVM objVM = new TrailsVM()
             {
@@ -49,7 +50,7 @@ namespace TrailWeb.Controllers
             }
 
             // this will come here for update.
-            objVM.Trail = await _tRepo.GetAsync(StaticDetails.TrailAPIPath, id.GetValueOrDefault());
+            objVM.Trail = await _tRepo.GetAsync(StaticDetails.TrailAPIPath, id.GetValueOrDefault(), HttpContext.Session.GetString("JWToken"));
 
             if(objVM.Trail == null)
             {
@@ -67,17 +68,17 @@ namespace TrailWeb.Controllers
             {              
                 if(obj.Trail.Id == 0)
                 {
-                    await _tRepo.CreateAsync(StaticDetails.TrailAPIPath, obj.Trail);
+                    await _tRepo.CreateAsync(StaticDetails.TrailAPIPath, obj.Trail, HttpContext.Session.GetString("JWToken"));
                 }
                 else
                 {
-                    await _tRepo.UpdateAsync(StaticDetails.TrailAPIPath + obj.Trail.Id, obj.Trail);
+                    await _tRepo.UpdateAsync(StaticDetails.TrailAPIPath + obj.Trail.Id, obj.Trail, HttpContext.Session.GetString("JWToken"));
                 }
                 return RedirectToAction(nameof(Index));
             }
             else
             {
-                IEnumerable<CampingPark> cpList = await _cpRepo.GetAllAsync(StaticDetails.CampingParkAPIPath);
+                IEnumerable<CampingPark> cpList = await _cpRepo.GetAllAsync(StaticDetails.CampingParkAPIPath, HttpContext.Session.GetString("JWToken"));
 
                 TrailsVM objVM = new TrailsVM()
                 {
@@ -95,12 +96,12 @@ namespace TrailWeb.Controllers
 
         public async Task<IActionResult> GetAllTrail()
         {
-            return Json(new { data = await _tRepo.GetAllAsync(StaticDetails.TrailAPIPath) }); 
+            return Json(new { data = await _tRepo.GetAllAsync(StaticDetails.TrailAPIPath, HttpContext.Session.GetString("JWToken")) }); 
         }
 
         public async Task<IActionResult> Delete(int id)
         {
-            var status = await _tRepo.DeleteAsync(StaticDetails.TrailAPIPath, id);
+            var status = await _tRepo.DeleteAsync(StaticDetails.TrailAPIPath, id, HttpContext.Session.GetString("JWToken"));
             if(status)
             {
                 return Json(new { success = true, message = "Delete Successful!" });

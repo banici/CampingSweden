@@ -6,6 +6,7 @@ using CampingParkWeb.Repository;
 using CampingParkWeb.Repository.IRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +29,7 @@ namespace CampingParkWeb
             services.AddScoped<ICampingParkRepository, CampingParkRepository>();
             services.AddScoped<ITrailRepository, TrailRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CampingParkWeb.Models;
 using CampingParkWeb.Repository.IRepository;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CampingParkWeb.Controllers
@@ -33,7 +34,7 @@ namespace CampingParkWeb.Controllers
             }
 
             // this will come here for update.
-            obj = await _cpRepo.GetAsync(StaticDetails.CampingParkAPIPath, id.GetValueOrDefault());
+            obj = await _cpRepo.GetAsync(StaticDetails.CampingParkAPIPath, id.GetValueOrDefault(), HttpContext.Session.GetString("JWToken"));
 
             if(obj == null)
             {
@@ -66,16 +67,16 @@ namespace CampingParkWeb.Controllers
                 }
                 else
                 {
-                    var objFromDb = await _cpRepo.GetAsync(StaticDetails.CampingParkAPIPath, obj.Id);
+                    var objFromDb = await _cpRepo.GetAsync(StaticDetails.CampingParkAPIPath, obj.Id, HttpContext.Session.GetString("JWToken"));
                     obj.Picture = objFromDb.Picture;
                 }
                 if(obj.Id == 0)
                 {
-                    await _cpRepo.CreateAsync(StaticDetails.CampingParkAPIPath, obj);
+                    await _cpRepo.CreateAsync(StaticDetails.CampingParkAPIPath, obj, HttpContext.Session.GetString("JWToken"));
                 }
                 else
                 {
-                    await _cpRepo.UpdateAsync(StaticDetails.CampingParkAPIPath + obj.Id, obj);
+                    await _cpRepo.UpdateAsync(StaticDetails.CampingParkAPIPath + obj.Id, obj, HttpContext.Session.GetString("JWToken"));
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -87,12 +88,12 @@ namespace CampingParkWeb.Controllers
 
         public async Task<IActionResult> GetAllCampingPark()
         {
-            return Json(new { data = await _cpRepo.GetAllAsync(StaticDetails.CampingParkAPIPath) }); 
+            return Json(new { data = await _cpRepo.GetAllAsync(StaticDetails.CampingParkAPIPath, HttpContext.Session.GetString("JWToken")) }); 
         }
 
         public async Task<IActionResult> Delete(int id)
         {
-            var status = await _cpRepo.DeleteAsync(StaticDetails.CampingParkAPIPath, id);
+            var status = await _cpRepo.DeleteAsync(StaticDetails.CampingParkAPIPath, id, HttpContext.Session.GetString("JWToken"));
             if(status)
             {
                 return Json(new { success = true, message = "Delete Successful!" });
