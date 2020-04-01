@@ -50,6 +50,7 @@ namespace CampingParkAPI.Repository
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
             user.Token = tokenHandler.WriteToken(token);
+            user.Password = user.PasswordCrypt(password);
 
             return user;
         }

@@ -396,3 +396,5 @@ C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkWeb\obj\Debug\ne
 C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkWeb\obj\Debug\netcoreapp3.1\Razor\Views\CampingParks\Upsert.cshtml.g.cs
 C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkWeb\obj\Debug\netcoreapp3.1\Razor\Views\Trails\Index.cshtml.g.cs
 C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkWeb\obj\Debug\netcoreapp3.1\Razor\Views\Trails\Upsert.cshtml.g.cs
+C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkWeb\obj\Debug\netcoreapp3.1\CampingParkWeb.csproj.CoreCompileInputs.cache
+C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkWeb\obj\Debug\netcoreapp3.1\CampingParkWeb.genruntimeconfig.cache

@@ -14,5 +14,19 @@ namespace CampingParkAPI.Models
         public string Role { get; set; }
         [NotMapped]
         public string Token { get; set; }
+
+
+
+
+        public string PasswordCrypt(string password)
+        {
+            string hiddenPassword = "";
+            for (int i = 0; i < password.Length; i++)
+            {
+                hiddenPassword += "*";
+            }
+            return hiddenPassword;
+        }
+
     }
 }
