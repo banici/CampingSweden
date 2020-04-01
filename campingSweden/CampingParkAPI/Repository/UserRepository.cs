@@ -57,12 +57,27 @@ namespace CampingParkAPI.Repository
 
         public bool isUniqueUser(string username)
         {
-            throw new NotImplementedException();
+            var user = _context.Users.SingleOrDefault(x => x.Username == username);
+
+            if (user == null)
+                return true;
+
+            return false;
         }
 
         public User Register(string username, string password)
         {
-            throw new NotImplementedException();
+            User user = new User()
+            {
+                Username = username,
+                Password = password
+            };
+
+            _context.Add(user);
+            _context.SaveChanges();
+            user.Password = user.PasswordCrypt(password);
+
+            return user;
         }
     }
 }

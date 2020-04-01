@@ -33,5 +33,24 @@ namespace CampingParkAPI.Controllers
 
             return Ok(user);
         }
+
+        [AllowAnonymous]
+        [HttpPost("register")]
+        public IActionResult Register([FromBody] User model)
+        {
+            bool usernameAvailable = _userRepo.isUniqueUser(model.Username);
+            if(!usernameAvailable)
+            {
+                return BadRequest(new { messge = $"The username: {model.Username} is already taken." });
+            }
+
+            var user = _userRepo.Register(model.Username, model.Password);
+            if(user == null)
+            {
+                return BadRequest(new { message = "Error occured when registering." });
+            }
+
+            return Ok();
+        }
     }
 }
