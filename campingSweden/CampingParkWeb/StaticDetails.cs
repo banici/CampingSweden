@@ -11,5 +11,6 @@ namespace CampingParkWeb
 
         public static string CampingParkAPIPath = APIBaseUrl + "api/v1/campingparks/";
         public static string TrailAPIPath = APIBaseUrl + "api/v1/trails/";
+        public static string AccountAPIPath = APIBaseUrl + "api/v1/users/";
     }
 }

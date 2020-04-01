@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using CampingParkWeb.Models;
 using CampingParkWeb.Repository.IRepository;
 using CampingParkWeb.Models.ViewModel;
+using Microsoft.AspNetCore.Http;
 
 namespace CampingParkWeb.Controllers
 {
@@ -16,12 +17,14 @@ namespace CampingParkWeb.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ICampingParkRepository _cpReo;
         private readonly ITrailRepository _tRepo;
+        private readonly IAccountRepository _accRepo;
 
-        public HomeController(ILogger<HomeController> logger, ICampingParkRepository cpRepo, ITrailRepository tRepo)
+        public HomeController(ILogger<HomeController> logger, ICampingParkRepository cpRepo, ITrailRepository tRepo, IAccountRepository accRepo)
         {
             _logger = logger;
             _cpReo = cpRepo;
             _tRepo = tRepo;
+            _accRepo = accRepo;
         }
 
         public async Task<IActionResult> Index()
@@ -43,6 +46,56 @@ namespace CampingParkWeb.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            User obj = new User();
+
+            return View(obj);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(User obj)
+        {
+            User objUser = await _accRepo.LoginAsync(StaticDetails.AccountAPIPath + "authenticate/", obj);
+            if(objUser.Token == null)
+            {
+                return View();
+            }
+
+            HttpContext.Session.SetString("JWToken", objUser.Token);
+
+            return RedirectToAction("~/Home/Index");
+        }
+
+        [HttpGet]
+        public IActionResult Register()
+        {            
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(User obj)
+        {
+            bool result = await _accRepo.RegisterAsync(StaticDetails.AccountAPIPath + "register/", obj);
+            if (result == false)
+            {
+                return View();
+            }
+
+            return RedirectToAction("~/Home/Login");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> LogoutAsync()
+        {
+            HttpContext.Session.SetString("JWToken", "");
+            return RedirectToAction("~/Home/Index");
         }
     }
 }
