@@ -5,11 +5,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using CampingParkWeb.Models;
 using CampingParkWeb.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CampingParkWeb.Controllers
 {
+    [Authorize]
     public class CampingParksController : Controller
     {
         private readonly ICampingParkRepository _cpRepo;
@@ -23,6 +25,7 @@ namespace CampingParkWeb.Controllers
             return View(new CampingPark() { });
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Upsert(int? id)
         {
             CampingPark obj = new CampingPark();
@@ -91,6 +94,8 @@ namespace CampingParkWeb.Controllers
             return Json(new { data = await _cpRepo.GetAllAsync(StaticDetails.CampingParkAPIPath, HttpContext.Session.GetString("JWToken")) }); 
         }
 
+        [HttpDelete]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var status = await _cpRepo.DeleteAsync(StaticDetails.CampingParkAPIPath, id, HttpContext.Session.GetString("JWToken"));

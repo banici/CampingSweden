@@ -400,3 +400,4 @@ C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkWeb\obj\Debug\ne
 C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkWeb\obj\Debug\netcoreapp3.1\CampingParkWeb.genruntimeconfig.cache
 C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkWeb\obj\Debug\netcoreapp3.1\Razor\Views\Home\Login.cshtml.g.cs
 C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkWeb\obj\Debug\netcoreapp3.1\Razor\Views\Home\Register.cshtml.g.cs
+C:\Users\ille\source\repos\HomeProject\campingSweden\CampingParkWeb\obj\Debug\netcoreapp3.1\Razor\Views\Home\AccessDenied.cshtml.g.cs

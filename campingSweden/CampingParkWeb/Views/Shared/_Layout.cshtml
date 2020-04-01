@@ -27,15 +27,15 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="CampingParks" asp-action="Index">Camping Parks</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="Trails" asp-action="Index">Trails</a>
+                        </li>
                         @if (httpAccessor.HttpContext.Session.GetString("JWToken") != null &&
-                      httpAccessor.HttpContext.Session.GetString("JWToken").ToString().Length > 0)
+                            httpAccessor.HttpContext.Session.GetString("JWToken").ToString().Length > 0)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-controller="CampingParks" asp-action="Index">Camping Parks</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-controller="Trails" asp-action="Index">Trails</a>
-                            </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-controller="Home" asp-action="Logout">Logout</a>
                             </li>
