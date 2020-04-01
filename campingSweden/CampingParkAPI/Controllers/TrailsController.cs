@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CampingParkAPI.Models;
 using CampingParkAPI.Models.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TrailAPI.Repository.IRepository;
@@ -50,6 +51,7 @@ namespace TrailAPI.Controllers
         [ProducesResponseType(200, Type = typeof(TrailDTO))]
         [ProducesResponseType(404)]
         [ProducesDefaultResponseType]
+        [Authorize( Roles = "Admin")]
         public IActionResult GetTrail(int id)
         {
             var obj = _repo.GetTrail(id);
