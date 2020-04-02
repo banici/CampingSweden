@@ -10,9 +10,11 @@ using CampingParkWeb;
 using CampingParkWeb.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TrailWeb.Controllers
 {
+    [Authorize]
     public class TrailsController : Controller
     {
         private readonly ITrailRepository _tRepo;
@@ -28,6 +30,7 @@ namespace TrailWeb.Controllers
             return View(new Trail() { });
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Upsert(int? id)
         {
             IEnumerable<CampingPark> cpList = await _cpRepo.GetAllAsync(StaticDetails.CampingParkAPIPath, HttpContext.Session.GetString("JWToken"));
@@ -99,6 +102,8 @@ namespace TrailWeb.Controllers
             return Json(new { data = await _tRepo.GetAllAsync(StaticDetails.TrailAPIPath, HttpContext.Session.GetString("JWToken")) }); 
         }
 
+        [HttpDelete]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var status = await _tRepo.DeleteAsync(StaticDetails.TrailAPIPath, id, HttpContext.Session.GetString("JWToken"));
