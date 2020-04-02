@@ -76,7 +76,7 @@ namespace CampingParkWeb.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
             HttpContext.Session.SetString("JWToken", objUser.Token);
-
+            TempData["alert"] = "Welcome " + objUser.Username;
             return RedirectToAction("Index");
         }
 
@@ -96,6 +96,7 @@ namespace CampingParkWeb.Controllers
                 return View();
             }
 
+            TempData["alert"] = "Registration successful.";
             return RedirectToAction("Login");
         }
 
