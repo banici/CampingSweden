@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CampingParkWeb.Controllers
 {
     [Authorize]
+    [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public class CampingParksController : Controller
     {
         private readonly ICampingParkRepository _cpRepo;

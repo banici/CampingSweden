@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace TrailWeb.Controllers
 {
     [Authorize]
+    [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public class TrailsController : Controller
     {
         private readonly ITrailRepository _tRepo;

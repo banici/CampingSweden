@@ -30,6 +30,7 @@ namespace CampingParkWeb.Controllers
             _accRepo = accRepo;
         }
 
+        
         public async Task<IActionResult> Index()
         {
             IndexVM listOfCampingParksAndTrails = new IndexVM()
