@@ -9,7 +9,10 @@ This project is a website that shows information and pictures about camping park
 
 ## Installed Packages
 ### Swashbuckle:
-Swagger UI tool makes it easy to test your API functionality as it includes built-in test harness for the public methods. And with SwaggerDocument that give a nice structure in the SwaggerUI from the API information about the objects from the routes, controllers and methods.
+Swagger UI tool makes it easy to test your API functionality as it includes built-in test harness for the public methods. And with SwaggerDocument gives a nice structure in the SwaggerUI from the API information about the objects from the routes, controllers and methods.
 
-### Mapper:
+### Automapper:
+Since this project is using DTO's (Data transfer Objects) to prevent the API from exposing the database entities to the client. Automapper makes it easy and with less code to write when converting domain model objects to dto's.
 
+### JwtBearer:
+JwtBearer is a standard web authentication token attached to HTTP request that validates the calls to authenticate them. 
